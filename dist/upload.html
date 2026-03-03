@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File - GLP Archive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon">GLP</div>
+            <span class="brand-text">Archive System</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="myfiles.html" class="nav-link">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Files</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="upload.html" class="nav-link active">
+                <i class="fa-solid fa-upload"></i>
+                <span>Upload</span>
+            </a>
+            <a href="search.html" class="nav-link">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-container">
+    <div class="card upload-card">
+        <div class="card-header-large">
+            <div class="header-icon">
+                <i class="fa-solid fa-upload"></i>
+            </div>
+            <div>
+                <h1>Upload File to Archive</h1>
+                <p class="header-subtitle">Upload your document with retention and location details</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Success Message (Hidden by default) -->
+            <div id="successMessage" class="success-box" style="display: none;">
+                <div class="success-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <h3>File Uploaded Successfully!</h3>
+                <p>Your unique File ID has been generated:</p>
+                <div class="file-id-display">
+                    <code id="generatedFileId"></code>
+                </div>
+                <p class="success-note">Please save this ID for future reference</p>
+            </div>
+
+            <!-- Upload Form -->
+            <form id="uploadForm">
+                <!-- File Upload -->
+                <div class="form-group">
+                    <label for="fileInput">
+                        <i class="fa-solid fa-file-text"></i>
+                        Select File *
+                    </label>
+                    <input type="file" id="fileInput" class="file-input" required>
+                    <div id="filePreview" class="file-preview" style="display: none;">
+                        <i class="fa-solid fa-file-text"></i>
+                        <div class="file-info">
+                            <p id="fileName" class="file-name"></p>
+                            <p id="fileSize" class="file-size"></p>
+                        </div>
+                    </div>
+                    <span class="error-message" id="fileError"></span>
+                </div>
+
+                <!-- Retention Period -->
+                <div class="form-group">
+                    <label for="retentionInput">
+                        <i class="fa-solid fa-calendar"></i>
+                        Retention Period (in years) *
+                    </label>
+                    <input type="number" id="retentionInput" min="1" placeholder="e.g., 5" required>
+                    <span class="error-message" id="retentionError"></span>
+                </div>
+
+                <!-- Location Details -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="buildingInput">
+                            <i class="fa-solid fa-building"></i>
+                            Building *
+                        </label>
+                        <input type="text" id="buildingInput" placeholder="e.g., B1" required>
+                        <span class="error-message" id="buildingError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomInput">
+                            <i class="fa-solid fa-door-open"></i>
+                            Room *
+                        </label>
+                        <input type="text" id="roomInput" placeholder="e.g., R3" required>
+                        <span class="error-message" id="roomError"></span>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="info-box">
+                    <i class="fa-solid fa-info-circle"></i>
+                    <div>
+                        <p class="info-title">Important Information</p>
+                        <ul class="info-list">
+                            <li>A unique File ID will be generated upon upload</li>
+                            <li>Save the File ID for future retrieval</li>
+                            <li>File retention will be calculated automatically</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-block btn-lg">
+                    <i class="fa-solid fa-upload"></i>
+                    Upload File to Archive
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <p class="page-footer-text">Archive responsibly • Compliance matters</p>
+</div>
+
+<!-- Toast Container -->
+<div id="toastContainer" class="toast-container"></div>
+
+<footer>
+    <p>© 2025 GLP Archive System</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

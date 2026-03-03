@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Archive - GLP Archive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon">GLP</div>
+            <span class="brand-text">Archive System</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="myfiles.html" class="nav-link">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Files</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="upload.html" class="nav-link">
+                <i class="fa-solid fa-upload"></i>
+                <span>Upload</span>
+            </a>
+            <a href="search.html" class="nav-link active">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-container">
+    <div class="card search-card">
+        <div class="card-header-large">
+            <div class="header-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div>
+                <h1>Search Archived File</h1>
+                <p class="header-subtitle">Enter a unique File ID to retrieve archive information</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Search Input -->
+            <div class="search-box">
+                <label for="searchInput">Enter Unique File ID</label>
+                <div class="search-input-group">
+                    <input type="text" id="searchInput" placeholder="GLP-2025-XXXXXX">
+                    <button id="searchBtn" class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+                <div id="searchError" class="error-box" style="display: none;">
+                    <i class="fa-solid fa-times-circle"></i>
+                    <span id="errorMessage"></span>
+                </div>
+            </div>
+
+            <!-- Sample IDs -->
+            <div class="info-box">
+                <i class="fa-solid fa-info-circle"></i>
+                <div>
+                    <p class="info-title">Try these sample File IDs:</p>
+                    <div class="sample-ids">
+                        <button class="sample-id-btn" data-id="GLP-2025-123456">GLP-2025-123456</button>
+                        <button class="sample-id-btn" data-id="GLP-2024-789012">GLP-2024-789012</button>
+                        <button class="sample-id-btn" data-id="GLP-2025-345678">GLP-2025-345678</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results" style="display: none;">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="results-title">
+                            <i class="fa-solid fa-file-text"></i>
+                            <h3>File Details</h3>
+                        </div>
+                        <span id="statusBadge" class="badge"></span>
+                    </div>
+
+                    <div class="results-body">
+                        <!-- File ID -->
+                        <div class="result-file-id">
+                            <div>
+                                <p class="result-label">File ID</p>
+                                <p id="resultFileId" class="result-file-id-text"></p>
+                            </div>
+                            <button id="copyBtn" class="btn-icon" title="Copy to clipboard">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- Details Grid -->
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <div class="result-item-header">
+                                    <i class="fa-solid fa-map-pin"></i>
+                                    <p class="result-label">Location</p>
+                                </div>
+                                <p id="resultLocation" class="result-value"></p>
+                                <p id="resultLocationDetails" class="result-subtext"></p>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="result-item-header">
+                                    <i class="fa-solid fa-calendar"></i>
+                                    <p class="result-label">Expiry Date</p>
+                                </div>
+                                <p id="resultExpiry" class="result-value"></p>
+                                <p id="resultRetention" class="result-subtext"></p>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="result-item-header">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <p class="result-label">Upload Date</p>
+                                </div>
+                                <p id="resultUpload" class="result-value"></p>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="result-item-header">
+                                    <i id="resultStatusIcon" class="fa-solid"></i>
+                                    <p class="result-label">Status</p>
+                                </div>
+                                <p id="resultStatus" class="result-value"></p>
+                                <p id="resultStatusText" class="result-subtext"></p>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="result-actions">
+                            <button id="searchAnotherBtn" class="btn btn-outline">
+                                Search Another File
+                            </button>
+                            <button id="copyAllBtn" class="btn btn-outline">
+                                <i class="fa-solid fa-copy"></i>
+                                Copy All Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="page-footer-text">Fast • Accurate • Traceable</p>
+</div>
+
+<!-- Toast Container -->
+<div id="toastContainer" class="toast-container"></div>
+
+<footer>
+    <p>© 2025 GLP Archive System</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:6
+        ports:
+          - 27017:27017
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+        env:
+          JWT_SECRET: test-secret
+          MONGODB_URI: mongodb://localhost:27017/universal-archive-test
+      - name: Start server (smoke)
+        run: |
+          timeout 5 node server.js &
+          sleep 2
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/api/auth/login -X POST -H "Content-Type: application/json" -d '{"email":"a@b.com","password":"x"}' || true
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+        env:
+          VITE_API_URL: https://api.example.com/api
+      - name: Run tests
+        run: npm test

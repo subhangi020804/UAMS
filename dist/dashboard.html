@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GLP Archive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon">GLP</div>
+            <span class="brand-text">Archive System</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="myfiles.html" class="nav-link">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Files</span>
+            </a>
+            <a href="dashboard.html" class="nav-link active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="upload.html" class="nav-link">
+                <i class="fa-solid fa-upload"></i>
+                <span>Upload</span>
+            </a>
+            <a href="search.html" class="nav-link">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Archive Dashboard</h1>
+        <p>Overview of your archive management system</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-file-text"></i>
+                </div>
+                <span class="stat-badge positive">+12%</span>
+            </div>
+            <h3 class="stat-label">Total Files</h3>
+            <p class="stat-value">1,247</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <span class="stat-badge positive">+8%</span>
+            </div>
+            <h3 class="stat-label">Active Files</h3>
+            <p class="stat-value">1,089</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <span class="stat-badge negative">-5%</span>
+            </div>
+            <h3 class="stat-label">Expiring Soon</h3>
+            <p class="stat-value">43</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon red">
+                    <i class="fa-solid fa-times-circle"></i>
+                </div>
+                <span class="stat-badge positive">+3%</span>
+            </div>
+            <h3 class="stat-label">Expired Files</h3>
+            <p class="stat-value">158</p>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-grid">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2>Monthly Upload Trend</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="uploadChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h2>Status Distribution</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity and Expirations Section -->
+    <div class="activity-grid">
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-clock"></i>
+                <h2>Recent Activity</h2>
+            </div>
+            <div class="card-body">
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-dot active"></div>
+                            <div>
+                                <p class="activity-id">GLP-2025-789456</p>
+                                <p class="activity-meta">Uploaded • 2025-02-09 at 14:30</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-dot active"></div>
+                            <div>
+                                <p class="activity-id">GLP-2025-456123</p>
+                                <p class="activity-meta">Uploaded • 2025-02-09 at 11:15</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-dot expired"></div>
+                            <div>
+                                <p class="activity-id">GLP-2024-987654</p>
+                                <p class="activity-meta">Expired • 2025-02-08 at 23:59</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-danger">Expired</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-dot active"></div>
+                            <div>
+                                <p class="activity-id">GLP-2025-321789</p>
+                                <p class="activity-meta">Uploaded • 2025-02-08 at 16:45</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-dot active"></div>
+                            <div>
+                                <p class="activity-id">GLP-2025-654987</p>
+                                <p class="activity-meta">Uploaded • 2025-02-07 at 09:20</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Expirations -->
+        <div class="card expiration-card">
+            <div class="card-header">
+                <i class="fa-solid fa-calendar"></i>
+                <h2>Upcoming Expirations</h2>
+            </div>
+            <div class="card-body">
+                <div class="expiration-list">
+                    <div class="expiration-item">
+                        <div>
+                            <p class="expiration-id">GLP-2020-111222</p>
+                            <p class="expiration-location">Location: B1 - R3</p>
+                            <p class="expiration-date">Expires: 2025-02-15</p>
+                        </div>
+                        <span class="badge badge-danger-outline">6 days</span>
+                    </div>
+
+                    <div class="expiration-item">
+                        <div>
+                            <p class="expiration-id">GLP-2020-333444</p>
+                            <p class="expiration-location">Location: B2 - R5</p>
+                            <p class="expiration-date">Expires: 2025-02-20</p>
+                        </div>
+                        <span class="badge badge-warning-outline">11 days</span>
+                    </div>
+
+                    <div class="expiration-item">
+                        <div>
+                            <p class="expiration-id">GLP-2020-555666</p>
+                            <p class="expiration-location">Location: B1 - R7</p>
+                            <p class="expiration-date">Expires: 2025-02-28</p>
+                        </div>
+                        <span class="badge badge-warning-outline">19 days</span>
+                    </div>
+
+                    <div class="expiration-item">
+                        <div>
+                            <p class="expiration-id">GLP-2020-777888</p>
+                            <p class="expiration-location">Location: B3 - R2</p>
+                            <p class="expiration-date">Expires: 2025-03-05</p>
+                        </div>
+                        <span class="badge badge-yellow-outline">24 days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 GLP Archive System</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

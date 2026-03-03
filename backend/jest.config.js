@@ -1,0 +1,8 @@
+export default {
+  testEnvironment: 'node',
+  transform: {},
+  extensionsToTreatAsEsm: ['.js'],
+  moduleNameMapper: {},
+  testMatch: ['**/tests/**/*.test.js'],
+  testTimeout: 10000,
+};
